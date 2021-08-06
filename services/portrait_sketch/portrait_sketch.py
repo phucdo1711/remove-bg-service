@@ -181,27 +181,27 @@ def load_face_detection_model():
 def transform(data):
     
     net = None
-    face_cascade = None
+    # face_cascade = None
     if models_cache['u2net_model'] != None:
         net = models_cache['u2net_model']
     else: 
         net = load_u2net_model()
         models_cache['u2net_model'] = net
 
-    if models_cache['face_cascade'] != None:
-        face_cascade = models_cache['face_cascade']
-    else: 
-        face_cascade = load_face_detection_model()
-        models_cache['face_cascade'] = face_cascade
+    # if models_cache['face_cascade'] != None:
+    #     face_cascade = models_cache['face_cascade']
+    # else: 
+    #     face_cascade = load_face_detection_model()
+    #     models_cache['face_cascade'] = face_cascade
 
     pil_image = Image.open(io.BytesIO(data)).convert("RGB")
     img = np.array(pil_image)
-    height,width = img.shape[0:2]
+    # height,width = img.shape[0:2]
 
-    face = detect_single_face(face_cascade,img)
+    # face = detect_single_face(face_cascade,img)
 
-    im_face = crop_face(img, face)
-    im_portrait = inference(net,im_face)
+    # im_face = crop_face(img, face)
+    im_portrait = inference(net,img)
     result = Image.fromarray((im_portrait*255).astype(np.uint8))
 
     bio = io.BytesIO()
