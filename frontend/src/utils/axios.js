@@ -3,8 +3,8 @@ import Axios from "axios";
 // import { API_URL } from "appConfig";
 
 const axios = Axios.create({
-  baseURL: 'http://localhost:5000' ,
-  // baseURL: '/',// 'http://localhost:5000' ,
+  // baseURL: 'http://localhost:5000' ,
+  baseURL: '/',// 'http://localhost:5000' ,
   timeout: 60000,
   headers: {
     Accept: "application/json",
