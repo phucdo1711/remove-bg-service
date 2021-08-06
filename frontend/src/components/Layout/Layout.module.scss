@@ -1,0 +1,24 @@
+.siteLayoutContent {
+    min-height: 500px;
+    padding: 24px;
+    background: #fff;
+}
+
+.layout {
+    min-height: 100vh;
+}
+
+.content {
+    padding: 0 50px;
+    height: 100%;
+}
+
+.logo {
+    float: left;
+    height: 100%;
+    // margin: 16px 24px 16px 0;
+    margin-right: 36px;
+    >img {
+        height: 36px;
+    }
+}

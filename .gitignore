@@ -1,0 +1,9 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+__pycache__
+model/__pycache__
+routes/__pycache__
+.vscode
+
+venv/
+services/backgroundremover/models/.u2net
