@@ -7,3 +7,4 @@ routes/__pycache__
 
 venv/
 services/backgroundremover/models/.u2net
+services/portrait_sketch/models/u2net_portrait.pth

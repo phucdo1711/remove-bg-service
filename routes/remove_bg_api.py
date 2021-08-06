@@ -54,7 +54,7 @@ def remove_bg_handler():
     # if len(model_choices) == 0:
     #     model_choices = ["u2net", "u2netp", "u2net_human_seg"]
     model_choices = ["u2net", "u2netp", "u2net_human_seg"]
-    
+
     if model not in model_choices:
         return {"error": f"invalid query param 'model'. Available options are {model_choices}"}, 400
 
@@ -74,6 +74,5 @@ def remove_bg_handler():
             mimetype="image/png",
         )
     except Exception as e:
-        app.logger.exception(e, exc_info=True)
         return {"error": "oops, something went wrong!"}, 500
 

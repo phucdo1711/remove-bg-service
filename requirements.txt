@@ -30,3 +30,4 @@ more_itertools==8.7.0
 moviepy==1.0.3
 Pillow==8.1.1
 ffmpeg-python
+opencv-python

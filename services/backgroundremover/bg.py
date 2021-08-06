@@ -1,7 +1,6 @@
 import functools
 import io
-import os
-import typing
+
 from PIL import Image
 from pymatting.alpha.estimate_alpha_cf import estimate_alpha_cf
 from pymatting.foreground.estimate_foreground_ml import estimate_foreground_ml
