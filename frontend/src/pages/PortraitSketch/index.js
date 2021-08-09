@@ -115,7 +115,9 @@ const ResultImage = ({ uploadFnc, file, title }) => {
       try {
         const buffer = await uploadFnc(file);
         setImageUrl("data:image/png;base64," + buffer);
-      } catch (error) {}
+      } catch (error) {
+        alert(error.message)
+      }
       setLoading(false);
     };
     main();

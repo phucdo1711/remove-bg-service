@@ -1,4 +1,5 @@
 import os
+import sys
 import cv2
 import torch
 from .u2net import U2NET
@@ -202,8 +203,12 @@ def transform(data):
     # face = detect_single_face(face_cascade,img)
 
     # im_face = crop_face(img, face)
-    im_portrait = inference(net,img )
-    result = Image.fromarray((im_portrait*255).astype(np.uint8))
+    try:
+        im_portrait = inference(net,img )
+        result = Image.fromarray((im_portrait*255).astype(np.uint8))
+    except: 
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
 
     bio = io.BytesIO()
     result.save(bio, "PNG")
