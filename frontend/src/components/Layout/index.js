@@ -19,6 +19,9 @@ const MainLayout = ({ children }) => {
           <Link to="/portrait-sketch">
             <Menu.Item key="/portrait-sketch">Portrait Sketch</Menu.Item>
           </Link>
+          <Link to="/style-transfer">
+            <Menu.Item key="/style-transfer">Style Transfer</Menu.Item>
+          </Link>
         </Menu>
       </Header>
       <Content className={styles.content}>
