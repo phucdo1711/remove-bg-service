@@ -33,10 +33,13 @@ def stylize(image_data, model, content_scale = None):
 
     content_image = utils.tensor_load_rgbimage(image, scale=content_scale)
     content_image = content_image.unsqueeze(0)
+    print('has content_image =====')
 
     is_cuda = torch.cuda.is_available()
+    print('is_cuda', is_cuda)
     if is_cuda:
         content_image = content_image.cuda()
+    print('loaded cuda =====')
    
     content_image = Variable(utils.preprocess_batch(content_image), volatile=True)
     style_model = TransformerNet()
@@ -45,6 +48,7 @@ def stylize(image_data, model, content_scale = None):
         style_model.cuda()
 
     output = style_model(content_image)
+    print('has output =====')
     img = utils.tensor_save_bgrimage(output.data[0], is_cuda)
     
     bio = io.BytesIO()
