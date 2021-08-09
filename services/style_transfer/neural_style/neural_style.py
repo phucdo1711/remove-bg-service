@@ -48,9 +48,12 @@ def stylize(image_data, model, content_scale = None):
     if is_cuda:
         style_model.cuda()
     print('style_model cuda done =====')
+    try: 
+        output = style_model(content_image)
+    except: 
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
 
-    output = style_model(content_image)
-    print('has output =====')
     img = utils.tensor_save_bgrimage(output.data[0], is_cuda)
     
     bio = io.BytesIO()
