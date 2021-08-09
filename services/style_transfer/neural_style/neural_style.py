@@ -35,7 +35,7 @@ def stylize(image_data, model, content_scale = None):
     content_image = content_image.unsqueeze(0)
     print('has content_image =====')
 
-    is_cuda = False # torch.cuda.is_available()
+    is_cuda = torch.cuda.is_available()
     print('is_cuda', is_cuda)
     if is_cuda:
         content_image = content_image.cuda()
