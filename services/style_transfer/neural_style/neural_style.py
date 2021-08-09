@@ -44,8 +44,10 @@ def stylize(image_data, model, content_scale = None):
     content_image = Variable(utils.preprocess_batch(content_image), volatile=True)
     style_model = TransformerNet()
     style_model.load_state_dict(torch.load(models_path[model]))
+    print('load model success ', models_path[model])
     if is_cuda:
         style_model.cuda()
+    print('style_model cuda done =====')
 
     output = style_model(content_image)
     print('has output =====')
