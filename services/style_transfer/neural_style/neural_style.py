@@ -43,17 +43,21 @@ def stylize(image_data, model, content_scale = None):
    
     content_image = Variable(utils.preprocess_batch(content_image), volatile=True)
     style_model = TransformerNet()
-    style_model.load_state_dict(torch.load(models_path[model]))
-    print('load model success ', models_path[model])
+    
     if is_cuda:
-        style_model.cuda()
-    print('style_model cuda done =====')
+        style_model.load_state_dict(torch.load(models_path[model]))
+        style_model.to(torch.device("cuda"))
+    else: 
+        style_model.load_state_dict(torch.load(models_path[model], map_location="cpu"))
+    print('load model done =====')
+
     try: 
         output = style_model(content_image)
     except: 
         print("Unexpected error:", sys.exc_info()[0])
         raise
-
+    print('output done =====')
+        
     img = utils.tensor_save_bgrimage(output.data[0], is_cuda)
     
     bio = io.BytesIO()
