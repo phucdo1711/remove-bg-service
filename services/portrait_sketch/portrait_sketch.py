@@ -195,7 +195,7 @@ def transform(data):
     #     face_cascade = load_face_detection_model()
     #     models_cache['face_cascade'] = face_cascade
 
-    pil_image = Image.open(io.BytesIO(data)) #.convert("RGB")
+    pil_image = Image.open(io.BytesIO(data)).convert("RGB")
     img = np.array(pil_image)
     # height,width = img.shape[0:2]
     
@@ -205,6 +205,7 @@ def transform(data):
     # im_face = crop_face(img, face)
     try:
         im_portrait = inference(net,img )
+        print(im_portrait)
         result = Image.fromarray((im_portrait*255).astype(np.uint8))
     except: 
         print("Unexpected error:", sys.exc_info()[0])
