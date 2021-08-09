@@ -35,7 +35,7 @@ def stylize(image_data, model, content_scale = None):
     content_image = content_image.unsqueeze(0)
     print('has content_image =====')
 
-    is_cuda = False #torch.cuda.is_available()
+    is_cuda = torch.cuda.is_available()
     print('is_cuda', is_cuda)
     if is_cuda:
         content_image = content_image.cuda()
@@ -48,6 +48,7 @@ def stylize(image_data, model, content_scale = None):
     if is_cuda:
         style_model.load_state_dict(torch.load(models_path[model]))
         style_model.to(torch.device("cuda"))
+        style_model.cuda()
     else: 
         style_model.load_state_dict(torch.load(models_path[model], map_location="cpu"))
     print('load model done =====')
