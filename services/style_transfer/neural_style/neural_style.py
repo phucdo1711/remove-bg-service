@@ -1,73 +1,65 @@
 import io
 import os
+import re
 import sys
 
 import torch
-from torch.autograd import Variable
 
 from . import utils
 from .transformer_net import TransformerNet
+from torchvision import transforms
 
 
 models_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../models")
 models_path = {
     'candy': os.path.join(models_dir, 'candy.pth'),
     'mosaic': os.path.join(models_dir, 'mosaic.pth'),
-    'starry-night': os.path.join(models_dir, 'starry-night.pth'),
+    # 'starry-night': os.path.join(models_dir, 'starry-night.pth'),
     'udnie': os.path.join(models_dir, 'udnie.pth'),
-    'rain-princess': os.path.join(models_dir, 'rain-princes.pth')
+    'rain-princess': os.path.join(models_dir, 'rain_princess.pth')
 }
 
-def check_paths(args):
-    try:
-        if not os.path.exists(args.vgg_model_dir):
-            os.makedirs(args.vgg_model_dir)
-        if not os.path.exists(args.save_model_dir):
-            os.makedirs(args.save_model_dir)
-    except OSError as e:
-        print(e)
-        sys.exit(1)
-
-
 def stylize(image_data, model, content_scale = None):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     with torch.no_grad():
         image = io.BytesIO(image_data)
 
-        content_image = utils.tensor_load_rgbimage(image, scale=content_scale)
-        content_image = content_image.unsqueeze(0)
+        content_image = utils.load_image(image, scale=content_scale)
+        content_transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Lambda(lambda x: x.mul(255))
+        ])
+        content_image = content_transform(content_image)
+        content_image = content_image.unsqueeze(0).to(device)
         print('has content_image =====')
 
         is_cuda = torch.cuda.is_available()
         print('is_cuda', is_cuda)
-        if is_cuda:
-            content_image = content_image.cuda()
-            print('loaded cuda =====')
         
-    
-        content_image = Variable(utils.preprocess_batch(content_image), volatile=True)
-        style_model = TransformerNet()
+        with torch.no_grad():
+            style_model = TransformerNet()
+            state_dict = torch.load(models_path[model])
+            print('loaded model ====')
+            # remove saved deprecated running_* keys in InstanceNorm from the checkpoint
+            for k in list(state_dict.keys()):
+                if re.search(r'in\d+\.running_(mean|var)$', k):
+                    del state_dict[k]
+            style_model.load_state_dict(state_dict)
+            style_model.to(device)
+            output = style_model(content_image).cpu()
         
-        if is_cuda:
-            style_model.load_state_dict(torch.load(models_path[model]))
-            style_model.to(torch.device("cuda"))
-            style_model.cuda()
-        else: 
-            style_model.load_state_dict(torch.load(models_path[model], map_location="cpu"))
-        print('load model done =====')
-
+        print(output)
         try: 
-            output = style_model(content_image)
+            bio = io.BytesIO()
+            utils.save_image(bio, output[0])
         except: 
-            print("Unexpected error:", sys.exc_info()[0])
+            print("Unexpected error:", sys.exc_info())
             raise
-        print('output done =====')
-            
-        img = utils.tensor_save_bgrimage(output.data[0], is_cuda)
         
-        bio = io.BytesIO()
-        img.save(bio, "PNG")
-        del style_model, img
-        torch.cuda.empty_cache()
+        
+        # del style_model
+        # torch.cuda.empty_cache()
         # print(bio.getbuffer())
         return bio.getbuffer()
 
