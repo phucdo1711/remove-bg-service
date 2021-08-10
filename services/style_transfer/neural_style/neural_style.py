@@ -16,7 +16,8 @@ models_path = {
     'mosaic': os.path.join(models_dir, 'mosaic.pth'),
     # 'starry-night': os.path.join(models_dir, 'starry-night.pth'),
     'udnie': os.path.join(models_dir, 'udnie.pth'),
-    'rain-princess': os.path.join(models_dir, 'rain_princess.pth')
+    'rain-princess': os.path.join(models_dir, 'rain_princess.pth'),
+    'dog': os.path.join(models_dir, 'dog.pth'),
 }
 
 def stylize(image_data, model, content_scale = None):
@@ -49,7 +50,6 @@ def stylize(image_data, model, content_scale = None):
             style_model.to(device)
             output = style_model(content_image).cpu()
         
-        print(output)
         try: 
             bio = io.BytesIO()
             utils.save_image(bio, output[0])
@@ -58,7 +58,7 @@ def stylize(image_data, model, content_scale = None):
             raise
         
         
-        # del style_model
+        del style_model, output
         # torch.cuda.empty_cache()
         # print(bio.getbuffer())
         return bio.getbuffer()

@@ -14,6 +14,7 @@ import ImagePicker from "components/ImagePicker";
 import candyImg from "assets/style-images/candy.jpg";
 import mosaicImg from "assets/style-images/mosaic.jpg";
 import starryNightImg from "assets/style-images/starry-night.jpg";
+import dogImg from "assets/style-images/dog.jpeg";
 import udnieImg from "assets/style-images/udnie.jpg";
 import rainPrincessImg from "assets/style-images/rain-princess.jpg";
 
@@ -45,6 +46,10 @@ const images = [
   {
     src: rainPrincessImg,
     id: "rain-princess",
+  },
+  {
+    src: dogImg,
+    id: "dog",
   },
 ];
 
