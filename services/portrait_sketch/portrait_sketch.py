@@ -181,13 +181,7 @@ def load_face_detection_model():
     
 def transform(data):
     with torch.no_grad():
-        net = None
-        # face_cascade = None
-        if models_cache['u2net_model'] != None:
-            net = models_cache['u2net_model']
-        else: 
-            net = load_u2net_model()
-            models_cache['u2net_model'] = net
+        net = load_u2net_model()
 
         # if models_cache['face_cascade'] != None:
         #     face_cascade = models_cache['face_cascade']
@@ -213,5 +207,6 @@ def transform(data):
 
         bio = io.BytesIO()
         result.save(bio, "PNG")
+        del net
         # print(bio.getbuffer())
         return bio.getbuffer()

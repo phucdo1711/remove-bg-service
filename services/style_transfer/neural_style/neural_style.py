@@ -65,6 +65,7 @@ def stylize(image_data, model, content_scale = None):
         
         bio = io.BytesIO()
         img.save(bio, "PNG")
+        del style_model
         torch.cuda.empty_cache()
         # print(bio.getbuffer())
         return bio.getbuffer()
