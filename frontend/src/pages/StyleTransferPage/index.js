@@ -15,6 +15,7 @@ import candyImg from "assets/style-images/candy.jpg";
 import mosaicImg from "assets/style-images/mosaic.jpg";
 import starryNightImg from "assets/style-images/starry-night.jpg";
 import udnieImg from "assets/style-images/udnie.jpg";
+import rainPrincessImg from "assets/style-images/rain-princess.jpg";
 
 const { Title } = Typography;
 
@@ -40,6 +41,10 @@ const images = [
   {
     src: udnieImg,
     id: "udnie",
+  },
+  {
+    src: rainPrincessImg,
+    id: "rain-princess",
   },
 ];
 

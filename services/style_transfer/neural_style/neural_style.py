@@ -15,6 +15,7 @@ models_path = {
     'mosaic': os.path.join(models_dir, 'mosaic.pth'),
     'starry-night': os.path.join(models_dir, 'starry-night.pth'),
     'udnie': os.path.join(models_dir, 'udnie.pth'),
+    'rain-princess': os.path.join(models_dir, 'rain-princes.pth')
 }
 
 def check_paths(args):
@@ -65,7 +66,7 @@ def stylize(image_data, model, content_scale = None):
         
         bio = io.BytesIO()
         img.save(bio, "PNG")
-        del style_model
+        del style_model, img
         torch.cuda.empty_cache()
         # print(bio.getbuffer())
         return bio.getbuffer()
