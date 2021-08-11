@@ -17,7 +17,7 @@ import starryNightImg from "assets/style-images/starry-night.jpg";
 import dogImg from "assets/style-images/dog.jpeg";
 import udnieImg from "assets/style-images/udnie.jpg";
 import rainPrincessImg from "assets/style-images/rain-princess.jpg";
-
+import monaLisaImg from "assets/style-images/mona-lisa.jpeg";
 const { Title } = Typography;
 
 function getBase64(img, callback) {
@@ -50,6 +50,10 @@ const images = [
   {
     src: dogImg,
     id: "dog",
+  },
+  {
+    src: monaLisaImg,
+    id: "mona-lisa",
   },
 ];
 

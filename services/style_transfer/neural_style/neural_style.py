@@ -18,6 +18,7 @@ models_path = {
     'udnie': os.path.join(models_dir, 'udnie.pth'),
     'rain-princess': os.path.join(models_dir, 'rain_princess.pth'),
     'dog': os.path.join(models_dir, 'dog.pth'),
+    'mona-lisa': os.path.join(models_dir, 'mona-lisa.pth'),
 }
 
 def stylize(image_data, model, content_scale = None):
