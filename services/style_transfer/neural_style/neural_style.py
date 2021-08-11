@@ -19,6 +19,7 @@ models_path = {
     'rain-princess': os.path.join(models_dir, 'rain_princess.pth'),
     'dog': os.path.join(models_dir, 'dog.pth'),
     'mona-lisa': os.path.join(models_dir, 'mona-lisa.pth'),
+    'girl_with_pearl_earring' :os.path.join(models_dir, 'girl_with_pearl_earring.pth'),
 }
 
 def stylize(image_data, model, content_scale = None):
