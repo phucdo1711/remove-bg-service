@@ -20,6 +20,7 @@ models_path = {
     'dog': os.path.join(models_dir, 'dog.pth'),
     'mona-lisa': os.path.join(models_dir, 'mona-lisa.pth'),
     'girl_with_pearl_earring' :os.path.join(models_dir, 'girl_with_pearl_earring.pth'),
+    'great_wave_off': os.path.join(models_dir, 'great_wave_off.pth'),
 }
 
 def stylize(image_data, model, content_scale = None):

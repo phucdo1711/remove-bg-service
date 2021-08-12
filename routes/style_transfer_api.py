@@ -43,7 +43,7 @@ def style_transfer_handler():
     # model_choices = [os.path.splitext(os.path.basename(x))[0] for x in set(glob.glob(model_path + "/*"))]
     # if len(model_choices) == 0:
     #     model_choices = ["u2net", "u2netp", "u2net_human_seg"]
-    model_choices = ['candy', 'mosaic', 'udnie', 'rain-princess', 'dog', 'mona-lisa','girl_with_pearl_earring']
+    model_choices = ['candy', 'mosaic', 'udnie', 'rain-princess', 'dog', 'mona-lisa','girl_with_pearl_earring', 'great_wave_off']
 
     if model not in model_choices:
         return {"error": f"invalid query param 'model'. Available options are {model_choices}"}, 400

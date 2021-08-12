@@ -19,6 +19,7 @@ import udnieImg from "assets/style-images/udnie.jpg";
 import rainPrincessImg from "assets/style-images/rain-princess.jpg";
 import monaLisaImg from "assets/style-images/mona-lisa.jpeg";
 import girlPearlImg from "assets/style-images/girl_with_pearl_earring.jpeg";
+import greatWaveOff from "assets/style-images/great_wave_off.jpeg";
 
 const { Title } = Typography;
 
@@ -60,6 +61,10 @@ const images = [
   {
     src: girlPearlImg,
     id: "girl_with_pearl_earring",
+  },
+  {
+    src: greatWaveOff,
+    id: "great_wave_off",
   },
 ];
 
