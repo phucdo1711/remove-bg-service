@@ -5,7 +5,7 @@ import os
 from flask import Flask, jsonify, make_response, send_from_directory
 from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
-from routes import  remove_bg_api,portrait_sketch_api,style_transfer_api
+from routes import  photo2cartoon_api, remove_bg_api,portrait_sketch_api,style_transfer_api
 
 APP = Flask(__name__, static_folder = 'frontend/build')
 
@@ -26,6 +26,7 @@ APP.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 APP.register_blueprint(remove_bg_api.get_blueprint())
 APP.register_blueprint(portrait_sketch_api.get_blueprint())
 APP.register_blueprint(style_transfer_api.get_blueprint())
+APP.register_blueprint(photo2cartoon_api.get_blueprint())
 
 
 @APP.route('/', defaults={'path': ''})
