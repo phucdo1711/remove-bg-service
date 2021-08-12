@@ -20,13 +20,7 @@ class Photo2Cartoon:
     def __init__(self):
         self.pre = Preprocess()
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        self.net = ResnetGenerator(ngf=32, img_size=256, light=True).to(self.device)
-        model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),'./models/photo2cartoon_weights.pt')
-        
-        assert os.path.exists(model_path), "[Step1: load weights] Can not find 'photo2cartoon_weights.pt' in folder 'models!!!'"
-        params = torch.load(model_path, map_location=self.device)
-        self.net.load_state_dict(params['genA2B'])
-        print('[Step1: load weights] success!')
+       
 
     def inference(self, img):
         # face alignment and segmentation
@@ -34,10 +28,17 @@ class Photo2Cartoon:
         if face_rgba is None:
             print('[Step2: face detect] can not detect face!!!')
             return None
-        # height = face_rgba.shape[0]
-        # width = face_rgba.shape[1]
+        width = face_rgba.shape[1]
+        self.net = ResnetGenerator(ngf=32, img_size=width, light=True).to(self.device)
+        model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),'./models/photo2cartoon_weights.pt')
+        
+        assert os.path.exists(model_path), "[Step1: load weights] Can not find 'photo2cartoon_weights.pt' in folder 'models!!!'"
+        params = torch.load(model_path, map_location=self.device)
+        self.net.load_state_dict(params['genA2B'])
+        print('[Step1: load weights] success!')
+        
         # print('[Step2: face detect] success!', width, height )
-        face_rgba = cv2.resize(face_rgba, (512, 512), interpolation=cv2.INTER_AREA)
+        face_rgba = cv2.resize(face_rgba, (width, width), interpolation=cv2.INTER_AREA)
         face = face_rgba[:, :, :3].copy()
         mask = face_rgba[:, :, 3][:, :, np.newaxis].copy() / 255.
         face = (face*mask + (1-mask)*255) / 127.5 - 1
