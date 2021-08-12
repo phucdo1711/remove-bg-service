@@ -28,7 +28,7 @@ class Photo2Cartoon:
         if face_rgba is None:
             print('[Step2: face detect] can not detect face!!!')
             return None
-        width = face_rgba.shape[1]
+        width = 256 #face_rgba.shape[1]
         self.net = ResnetGenerator(ngf=32, img_size=width, light=True).to(self.device)
         model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),'./models/photo2cartoon_weights.pt')
         
@@ -38,7 +38,7 @@ class Photo2Cartoon:
         print('[Step1: load weights] success!')
         
         # print('[Step2: face detect] success!', width, height )
-        # face_rgba = cv2.resize(face_rgba, (width, width), interpolation=cv2.INTER_AREA)
+        face_rgba = cv2.resize(face_rgba, (width, width), interpolation=cv2.INTER_AREA)
         face = face_rgba[:, :, :3].copy()
         mask = face_rgba[:, :, 3][:, :, np.newaxis].copy() / 255.
         face = (face*mask + (1-mask)*255) / 127.5 - 1
