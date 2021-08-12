@@ -38,7 +38,7 @@ class Photo2Cartoon:
         print('[Step1: load weights] success!')
         
         # print('[Step2: face detect] success!', width, height )
-        face_rgba = cv2.resize(face_rgba, (width, width), interpolation=cv2.INTER_AREA)
+        # face_rgba = cv2.resize(face_rgba, (width, width), interpolation=cv2.INTER_AREA)
         face = face_rgba[:, :, :3].copy()
         mask = face_rgba[:, :, 3][:, :, np.newaxis].copy() / 255.
         face = (face*mask + (1-mask)*255) / 127.5 - 1
