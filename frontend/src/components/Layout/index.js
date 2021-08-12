@@ -18,6 +18,11 @@ const links = [
     to: "/style-transfer",
     title: "Style Transfer",
   },
+  {
+    to: "/photo-to-cartoon",
+    title: "Photo To Cartoon",
+  },
+ 
 ];
 
 const MainLayout = ({ children }) => {
