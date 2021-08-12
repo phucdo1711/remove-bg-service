@@ -34,9 +34,10 @@ class Photo2Cartoon:
         if face_rgba is None:
             print('[Step2: face detect] can not detect face!!!')
             return None
-        
-        print('[Step2: face detect] success!')
-        # face_rgba = cv2.resize(face_rgba, (512, 512), interpolation=cv2.INTER_AREA)
+        height = face_rgba.shape[0]
+        width = face_rgba.shape[1]
+        print('[Step2: face detect] success!', width, height )
+        face_rgba = cv2.resize(face_rgba, (width, height), interpolation=cv2.INTER_AREA)
         face = face_rgba[:, :, :3].copy()
         mask = face_rgba[:, :, 3][:, :, np.newaxis].copy() / 255.
         face = (face*mask + (1-mask)*255) / 127.5 - 1

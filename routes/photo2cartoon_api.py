@@ -47,6 +47,10 @@ def photo2cartoon_handler():
             subprocess.run('. services/photo2cartoon/venv/bin/activate; python services/photo2cartoon/test.py --photo_path ' +file_path + ' --save_path ' + file_result_path,capture_output=False, shell=True)
         except Exception as e:
             return jsonify({"error": str(e)}), 500
+
+        if not os.path.exists(file_result_path):
+            return jsonify({"error": 'not result'}), 500
+            
         with open(file_result_path, 'rb') as fh:
             buf = BytesIO(fh.read())
             return send_file(
