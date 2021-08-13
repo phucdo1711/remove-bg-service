@@ -38,10 +38,10 @@ const images = [
     src: mosaicImg,
     id: "mosaic",
   },
-  // {
-  //   src: starryNightImg,
-  //   id: "starry-night",
-  // },
+  {
+    src: starryNightImg,
+    id: "starry-night",
+  },
   {
     src: udnieImg,
     id: "udnie",

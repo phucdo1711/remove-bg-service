@@ -14,7 +14,7 @@ models_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../model
 models_path = {
     'candy': os.path.join(models_dir, 'candy.pth'),
     'mosaic': os.path.join(models_dir, 'mosaic.pth'),
-    # 'starry-night': os.path.join(models_dir, 'starry-night.pth'),
+    'starry-night': os.path.join(models_dir, 'starry-night.pth'),
     'udnie': os.path.join(models_dir, 'udnie.pth'),
     'rain-princess': os.path.join(models_dir, 'rain_princess.pth'),
     'dog': os.path.join(models_dir, 'dog.pth'),
