@@ -22,7 +22,10 @@ const links = [
     to: "/photo-to-cartoon",
     title: "Photo To Cartoon",
   },
- 
+  {
+    to: "/cartoonize",
+    title: "Cartoonize",
+  },
 ];
 
 const MainLayout = ({ children }) => {

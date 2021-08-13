@@ -5,6 +5,7 @@ import RemoveBgPage from "pages/RemoveBgPage";
 import PortraitSketch from "pages/PortraitSketch";
 import StyleTransferPage from "pages/StyleTransferPage";
 import Photo2Cartoon from "pages/Photo2Cartoon";
+import Cartoonize from "pages/Cartoonize";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/portrait-sketch" component={PortraitSketch} exact />
           <Route path="/style-transfer" component={StyleTransferPage} exact />
           <Route path="/photo-to-cartoon" component={Photo2Cartoon} exact />
+          <Route path="/cartoonize" component={Cartoonize} exact />
         </Switch>
       </Layout>
     </Router>
