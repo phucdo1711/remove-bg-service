@@ -20,6 +20,7 @@ import rainPrincessImg from "assets/style-images/rain-princess.jpg";
 import monaLisaImg from "assets/style-images/mona-lisa.jpeg";
 import girlPearlImg from "assets/style-images/girl_with_pearl_earring.jpeg";
 import greatWaveOff from "assets/style-images/great_wave_off.jpeg";
+import ptsAction1Img from "assets/style-images/pts_action_1.jpeg";
 
 const { Title } = Typography;
 
@@ -65,6 +66,10 @@ const images = [
   {
     src: greatWaveOff,
     id: "great_wave_off",
+  },
+  {
+    src: ptsAction1Img,
+    id: "pts_action_1",
   },
 ];
 
